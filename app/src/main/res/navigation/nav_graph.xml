@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CategoryFragment">
+
+    <fragment
+        android:id="@+id/CategoryFragment"
+        android:name="orlo.karagulov.foodorderapp.ui.category.CategoryFragment"
+        android:label="Категории"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_CategoryFragment_to_DishesFragment"
+            app:destination="@id/DishesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"></action>
+    </fragment>
+    <fragment
+        android:id="@+id/SearchFragment"
+        android:name="orlo.karagulov.foodorderapp.ui.search.SearchFragment"
+        android:label="Поиск"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/CartFragment"
+        android:name="orlo.karagulov.foodorderapp.ui.cart.CartFragment"
+        android:label="Корзина"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/DishesFragment"
+        android:name="orlo.karagulov.foodorderapp.ui.dishes.DishesFragment"
+        android:label="{currentCategory}"
+        tools:layout="@layout/fragment_dishes">
+        <action
+            android:id="@+id/action_DishesFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+        <action
+            android:id="@+id/action_DishesFragment_to_dishDetailFragment"
+            app:destination="@id/dishDetailFragment" />
+        <argument
+            android:name="currentCategory"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/dishDetailFragment"
+        android:name="orlo.karagulov.foodorderapp.ui.dishes.DishDetailFragment"
+        tools:layout="@layout/detail_dish">
+        <argument
+            android:name="currentDish"
+            app:argType="orlo.karagulov.foodorderapp.data.models.Dish" />
+        <action
+            android:id="@+id/action_dishDetailFragment_to_DishesFragment2"
+            app:destination="@id/DishesFragment" />
+    </fragment>
+</navigation>
